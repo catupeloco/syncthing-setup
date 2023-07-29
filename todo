@@ -1,0 +1,20 @@
+#!/bin/bash
+echo  -- -- BAJANDO HERRAMIENTAS....
+sudo apt install -y curl wget
+echo  -- -- INSTALANDO BINARIOS....
+sudo curl -o /usr/share/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
+echo "deb [signed-by=/usr/share/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
+sudo apt-get update
+sudo apt-get install -y syncthing
+
+echo  -- -- CREANDO ARCHIVOS SERVICIOS....
+sudo rm -f /etc/systemd/system/syncthing@.service /etc/systemd/system/syncthing-resume.service
+sudo wget -o /etc/systemd/system/syncthing-resume.service https://raw.githubusercontent.com/syncthing/syncthing/main/etc/linux-systemd/system/syncthing-resume.service
+sudo wget -o /etc/systemd/system/syncthing@.service       https://raw.githubusercontent.com/syncthing/syncthing/main/etc/linux-systemd/system/syncthing%40.service
+
+echo  -- -- HABILITANDO SERVICIO....
+sudo systemctl enable syncthing@$USER.service
+sudo systemctl start syncthing@$USER.service
+
+echo  -- -- VERIFICANDO SERVICIO....
+systemctl status syncthing@$USER.service
