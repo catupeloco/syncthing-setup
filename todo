@@ -1,4 +1,9 @@
 #!/bin/bash
+if [ "x$USER" == "xroot" ] ; then 
+  echo  -- -- ALERTA ....
+  echo No instalar como root, usar un usuario sudoer
+  exit 1
+fi
 echo  -- -- BAJANDO HERRAMIENTAS....
 sudo apt install -y curl wget
 echo  -- -- INSTALANDO BINARIOS....
