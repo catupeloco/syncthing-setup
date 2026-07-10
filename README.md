@@ -17,7 +17,7 @@ setup automatico
 
 **EN CASO DE QUERER ACCEDER REMOTAMENTE CAMBIAR 127.0.0.1 EN**
 
-`$HOME/.config/syncthing/config.xml`
+`$HOME/.config/syncthing/config.xml`  
 `$HOME/.local/state/syncthing/config.xml`
 
 **DE LA SIGUENTE MANERA EN LA SECCION GUI**
